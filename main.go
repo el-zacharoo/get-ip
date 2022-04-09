@@ -39,7 +39,6 @@ func get(w http.ResponseWriter, r *http.Request) {
 	}
 
 	mdl.IP = create().String()
-	fmt.Println(mdl.IP)
 
 	rspByt, err := json.Marshal(mdl)
 	if err != nil {
@@ -47,7 +46,7 @@ func get(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(rspByt)
-	fmt.Println(mdl.IP)
+
 }
 
 func main() {
