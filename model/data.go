@@ -11,4 +11,5 @@ type Geolocation struct {
 	CountryCode string    `json:"countrycode"`
 	Date        time.Time `json:"date"`
 	IPAddress   string    `json:"ipAddress"`
+	Platform    string    `json:"platform"`
 }
