@@ -49,7 +49,7 @@ type Geolocation struct {
 	Store *store.Store
 }
 
-func (g *Geolocation) Add(w http.ResponseWriter, r *http.Request) {
+func (g *Geolocation) Create(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodOptions {
 		return
@@ -64,6 +64,6 @@ func (g *Geolocation) Add(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqByt, &geo)
 
 	geo.Date = time.Now()
-	g.Store.Add(geo)
+	g.Store.AddLocation(geo)
 	w.Write([]byte("done"))
 }

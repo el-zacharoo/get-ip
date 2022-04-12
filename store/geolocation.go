@@ -8,7 +8,7 @@ import (
 	"github.com/ip-address/model"
 )
 
-func (s *Store) Add(g model.Geolocation) {
+func (s *Store) AddLocation(g model.Geolocation) {
 	insertResult, err := s.locaColl.InsertOne(context.Background(), g)
 	if err != nil {
 		log.Fatal(err)

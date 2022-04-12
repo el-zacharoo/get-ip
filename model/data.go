@@ -8,7 +8,7 @@ type IPAddress struct {
 
 type Geolocation struct {
 	Country     string    `json:"country"`
-	CountryCode string    `json:"country_code"`
+	CountryCode string    `json:"countrycode"`
 	Date        time.Time `json:"date"`
 	IPAddress   string    `json:"ipAddress"`
 }

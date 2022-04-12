@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi"
@@ -18,7 +19,7 @@ func main() {
 		middleware.StripSlashes,
 		cors.Handler(cors.Options{
 			AllowedOrigins:   []string{"https://*", "http://*"},
-			AllowedMethods:   []string{"GET", "POST"},
+			AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "QUERY"},
 			AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 			ExposedHeaders:   []string{"Link"},
 			AllowCredentials: true,
@@ -27,12 +28,19 @@ func main() {
 		}),
 	)
 
-	add := &handler.Geolocation{
+	g := &handler.Geolocation{
 		Store: s,
 	}
 
 	r.Get("/ip", handler.Get)
-	r.Post("/geo", add.Add)
+	r.Route("/geo", func(r chi.Router) {
+		r.Post("/", g.Create)
+		// r.Get("/{id}", g.Get)
+		// r.Put("/{id}", g.Update)
+		// r.Delete("/{id}", g.Delete)
+	})
 
-	http.ListenAndServe(":8080", r)
+	if err := http.ListenAndServe(":8080", r); err != nil {
+		fmt.Print(err)
+	}
 }
