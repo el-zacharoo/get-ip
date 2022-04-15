@@ -39,11 +39,8 @@ func main() {
 		// r.Put("/{id}", g.Update)
 		// r.Delete("/{id}", g.Delete)
 	})
-	PORT := ":8080"
-	if PORT == "" {
-		PORT = ":8080"
-	}
-	if err := http.ListenAndServe(PORT, r); err != nil {
+
+	if err := http.ListenAndServe(":8080", r); err != nil {
 		fmt.Print(err)
 	}
 }
