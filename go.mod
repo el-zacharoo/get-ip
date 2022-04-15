@@ -1,4 +1,4 @@
-module github.com/get-ip
+module github.com/el-zacharoo/get-ip
 
 go 1.17
 

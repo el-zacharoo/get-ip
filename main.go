@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/get-ip/handler"
-	"github.com/get-ip/store"
+	"github.com/el-zacharoo/get-ip/handler"
+	"github.com/el-zacharoo/get-ip/store"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"

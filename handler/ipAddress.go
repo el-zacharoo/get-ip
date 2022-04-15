@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/get-ip/model"
-	"github.com/get-ip/store"
+	"github.com/el-zacharoo/get-ip/model"
+	"github.com/el-zacharoo/get-ip/store"
 )
 
 func create() net.IP {
