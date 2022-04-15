@@ -20,7 +20,7 @@ COPY . .
 # access to private repos (e.g. Bitbucket)
 ARG NETRC
 RUN echo $NETRC > ~/.netrc
-RUN go env -w GOPRIVATE=github.com/el-zacharoo/get-ip/*
+RUN go env -w GOPRIVATE=github.com/el-zacharoo/*
 
 # Build as static-linked binary (no external dependencies).
 RUN go mod download
