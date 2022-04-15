@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/el-zacharoo/get-ip/handler"
 	"github.com/el-zacharoo/get-ip/store"
@@ -39,8 +40,7 @@ func main() {
 		// r.Put("/{id}", g.Update)
 		// r.Delete("/{id}", g.Delete)
 	})
-
-	if err := http.ListenAndServe(":8080", r); err != nil {
+	if err := http.ListenAndServe(":"+os.Getenv("PORT"), r); err != nil {
 		fmt.Print(err)
 	}
 }
