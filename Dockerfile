@@ -35,6 +35,7 @@ COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /ip /ip
 
 
+
 EXPOSE 8080
 # Perform any further action as an unprivileged user
 USER appuser:appuser

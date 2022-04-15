@@ -25,7 +25,7 @@ func Connect() *Store {
 	mongoAPI := os.Getenv("API")
 	fmt.Println(mongoAPI)
 
-	clientOptions := options.Client().ApplyURI("mongodb+srv://geoloaction:e2Fyk5w2ZJnV6uzN@cluster0.u4qeu.mongodb.net")
+	clientOptions := options.Client().ApplyURI(mongoAPI)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
