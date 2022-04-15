@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/get-ip/handler"
+	"github.com/get-ip/store"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
-	"github.com/ip-address/handler"
-	"github.com/ip-address/store"
 )
 
 func main() {

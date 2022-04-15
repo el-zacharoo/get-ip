@@ -1,4 +1,4 @@
-module github.com/ip-address
+module github.com/get-ip
 
 go 1.17
 

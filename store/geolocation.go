@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/ip-address/model"
+	"github.com/get-ip/model"
 )
 
 func (s *Store) AddLocation(g model.Geolocation) {
