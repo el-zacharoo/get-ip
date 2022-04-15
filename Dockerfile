@@ -18,9 +18,9 @@ WORKDIR /src
 COPY . .
 
 # access to private repos (e.g. Bitbucket)
-ARG NETRC
-RUN echo $NETRC > ~/.netrc
-RUN go env -w GOPRIVATE=github.com/el-zacharoo/*
+# ARG NETRC
+# RUN echo $NETRC > ~/.netrc
+# RUN go env -w GOPRIVATE=github.com/el-zacharoo/*
 
 # Build as static-linked binary (no external dependencies).
 RUN go mod download
@@ -34,7 +34,8 @@ COPY --from=builder /etc/group /etc/group
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /ip /ip
 
-EXPOSE 8081
+
+EXPOSE 8080
 # Perform any further action as an unprivileged user
 USER appuser:appuser
 ENTRYPOINT ["/ip"]

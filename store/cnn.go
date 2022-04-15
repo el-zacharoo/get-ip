@@ -2,10 +2,10 @@ package store
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -14,16 +14,17 @@ type Store struct {
 	locaColl *mongo.Collection
 }
 
-func init() {
-	err := godotenv.Load(".env")
-
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-}
-
 func Connect() *Store {
-	clientOptions := options.Client().ApplyURI(os.Getenv("API"))
+	// err := godotenv.Load(".env")
+
+	// if err != nil {
+	// 	log.Fatal("Error loading .env file")
+	// }
+
+	mongoAPI := os.Getenv("API")
+	fmt.Println(mongoAPI)
+
+	clientOptions := options.Client().ApplyURI("mongodb+srv://geoloaction:e2Fyk5w2ZJnV6uzN@cluster0.u4qeu.mongodb.net")
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
