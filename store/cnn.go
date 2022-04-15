@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -15,11 +16,11 @@ type Store struct {
 }
 
 func Connect() *Store {
-	// err := godotenv.Load(".env")
+	err := godotenv.Load(".env")
 
-	// if err != nil {
-	// 	log.Fatal("Error loading .env file")
-	// }
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
 	mongoAPI := os.Getenv("API")
 	fmt.Println(mongoAPI)
