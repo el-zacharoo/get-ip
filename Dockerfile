@@ -34,7 +34,6 @@ COPY --from=builder /etc/group /etc/group
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /app /app
 
-
 EXPOSE 8080
 # Perform any further action as an unprivileged user
 USER appuser:appuser
