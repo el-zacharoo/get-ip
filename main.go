@@ -33,10 +33,10 @@ func main() {
 		Store: s,
 	}
 
-	r.Get("/ip", handler.Get)
 	r.Route("/geo", func(r chi.Router) {
 		r.Post("/", g.Create)
-		// r.Get("/{id}", g.Get)
+		r.Get("/{id}", g.Get)
+		r.Get("/", g.Query)
 		// r.Put("/{id}", g.Update)
 		// r.Delete("/{id}", g.Delete)
 	})
