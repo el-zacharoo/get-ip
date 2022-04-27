@@ -35,8 +35,6 @@ func main() {
 			MaxAge:           300,
 			// Debug:            true,
 		}),
-		auth.Verifier(tokenAuth),
-		auth.Authenticator,
 	)
 
 	g := &handler.Geolocation{
@@ -49,6 +47,10 @@ func main() {
 
 	r.Route("/geo", func(r chi.Router) {
 		// r.Post("/", g.Create)
+		r.Use(
+			auth.Verifier(tokenAuth),
+			auth.Authenticator,
+		)
 		r.With(auth.Authz("read:entry")).Get("/{id}", g.Get)
 		r.With(auth.Authz("read:entry")).Get("/", g.Query)
 
