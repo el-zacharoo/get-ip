@@ -5,12 +5,20 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/el-zacharoo/get-ip/auth"
 	"github.com/el-zacharoo/get-ip/handler"
 	"github.com/el-zacharoo/get-ip/store"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
 )
+
+var tokenAuth *auth.JWTAuth
+
+func init() {
+	jwks, _ := auth.JKS("https://practice-tenant.au.auth0.com/.well-known/jwks.json")
+	tokenAuth = auth.New("RS256", jwks)
+}
 
 func main() {
 	s := store.Connect()
@@ -27,6 +35,8 @@ func main() {
 			MaxAge:           300,
 			// Debug:            true,
 		}),
+		auth.Verifier(tokenAuth),
+		auth.Authenticator,
 	)
 
 	g := &handler.Geolocation{
@@ -35,10 +45,9 @@ func main() {
 
 	r.Route("/geo", func(r chi.Router) {
 		r.Post("/", g.Create)
-		r.Get("/{id}", g.Get)
-		r.Get("/", g.Query)
-		// r.Put("/{id}", g.Update)
-		// r.Delete("/{id}", g.Delete)
+		r.With(auth.Authz("read:entry")).Get("/{id}", g.Get)
+		r.With(auth.Authz("read:entry")).Get("/", g.Query)
+
 	})
 	if err := http.ListenAndServe(":"+os.Getenv("PORT"), r); err != nil {
 		fmt.Print(err)
