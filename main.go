@@ -43,8 +43,12 @@ func main() {
 		Store: s,
 	}
 
-	r.Route("/geo", func(r chi.Router) {
+	r.Route("/post", func(r chi.Router) {
 		r.Post("/", g.Create)
+	})
+
+	r.Route("/geo", func(r chi.Router) {
+		// r.Post("/", g.Create)
 		r.With(auth.Authz("read:entry")).Get("/{id}", g.Get)
 		r.With(auth.Authz("read:entry")).Get("/", g.Query)
 
