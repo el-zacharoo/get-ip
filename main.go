@@ -46,7 +46,6 @@ func main() {
 	})
 
 	r.Route("/geo", func(r chi.Router) {
-		// r.Post("/", g.Create)
 		r.Use(
 			auth.Verifier(tokenAuth),
 			auth.Authenticator,
@@ -58,4 +57,5 @@ func main() {
 	if err := http.ListenAndServe(":"+os.Getenv("PORT"), r); err != nil {
 		fmt.Print(err)
 	}
+
 }
